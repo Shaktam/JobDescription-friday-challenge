@@ -3,6 +3,7 @@
 # 1. "/job" a list of jobs 
 # 1. "/job/:id" "single job matching the id
 
+from http.client import HTTPException
 from fastapi import FastAPI
 import uvicorn
 
@@ -34,19 +35,16 @@ jobs = [{
         "job_Description": "Software Development, Analysis, Maintenance, Planning and Project Management"
     }]
 
-@app.get("/")
-async def read_root():
-    return {"job": "Joblist"}
-
 @app.get("/job")
 def joblist():
     return jobs
 
 @app.get("/job/{id}")
 def joblist(id):
- for job in jobs :
+    for job in jobs :
         if job["id"] == id:
-            return job       
+            return job      
+    raise HTTPException(status_code=404,detail="Student not found")         
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=80)
