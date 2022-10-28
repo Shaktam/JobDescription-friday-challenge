@@ -44,7 +44,7 @@ def joblist(id):
     for job in jobs :
         if job["id"] == id:
             return job      
-    raise HTTPException(status_code=404,detail="Student not found")         
+    raise HTTPException(status_code=404,detail="Job with id" + id + "not found")         
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=80)
