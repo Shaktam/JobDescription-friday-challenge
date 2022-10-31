@@ -1,0 +1,4 @@
+jobtitle_venv
+venv*
+--pycache--
+  .DS_Store
